@@ -13,12 +13,15 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color
+import st.masoom.callingapplication.Model.ContactItem
 import st.masoom.callingapplication.ViewModel.ContactViewModel
 
 @Composable
 fun ContactDialog(
     onDismiss: () -> Unit,
-    viewModel: ContactViewModel
+    viewModel: ContactViewModel,
+    text: String= "Save" ,
+    id: Int =0
 ) {
     var name by remember { mutableStateOf( "") }
     var phoneNumber by remember { mutableStateOf( "") }
@@ -47,13 +50,18 @@ fun ContactDialog(
         confirmButton = {
             TextButton(onClick = {
                 if (name.isNotBlank() && phoneNumber.isNotBlank()) {
-                    // pass a function to add the elements
-                    viewModel.addContact(name, phoneNumber)
+                    if ( text=="Save"){
+                        // pass a function to add the elements
+                        viewModel.addContact(name, phoneNumber)
+                    }
+                    else{
+                        viewModel.updateContact(ContactItem(name = name, phoneNumber= phoneNumber , id = id))
+                    }
                     name = "" // Clear the fields after submit
                     phoneNumber = ""
                 }
             }) {
-                Text(text = "Save")
+                Text(text = text)
             }
         },
         dismissButton = {

@@ -47,4 +47,9 @@ class ContactViewModel(private val repository: ContactRepository) : ViewModel() 
             Toast.makeText(context, "Failed to open dialer", Toast.LENGTH_SHORT).show()
         }
     }
+    fun updateContact(contact: ContactItem) {
+        viewModelScope.launch{
+            repository.updateContact(contact)
+        }
+    }
 }

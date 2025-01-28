@@ -17,20 +17,22 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import android.content.Context
 import androidx.compose.ui.platform.LocalContext
+import androidx.navigation.NavHostController
 import st.masoom.callingapplication.ViewModel.ContactViewModel
 import st.masoom.callingapplication.View.ContactListItem
 import st.masoom.callingapplication.View.ContactDialog
 import st.masoom.callingapplication.Model.ContactItem
 
 @Composable
-fun ContactListApp(viewModel: ContactViewModel) {
+fun ContactListApp(viewModel: ContactViewModel, navController: NavHostController) {
     val contacts by viewModel.contacts.collectAsState(initial = emptyList())
-    var showDialog by remember { mutableStateOf(false) }
+    var showDialog by remember { mutableStateOf(0) }
     val context = LocalContext.current
+    var id: Int by remember{ mutableStateOf(0) }
 
     Scaffold(
         floatingActionButton = {
-            FloatingActionButton(onClick = { showDialog = true }) {
+            FloatingActionButton(onClick = { showDialog = 1 }) {
                 Icon(imageVector = Icons.Default.Add, contentDescription = "Add Contact")
             }
         }
@@ -52,10 +54,14 @@ fun ContactListApp(viewModel: ContactViewModel) {
                     items(contacts) { contact ->
                         ContactListItem(
                             contact = contact,
-                            onEditClick = {/*
-                                selectedContact = contact
-                                showDialog = true
-                                */
+                            onCardClick = {
+                                navController.navigate(
+                                    "contact_details/${contact.name}/${contact.phoneNumber}"
+                                )
+                            },
+                            onEditClick = {
+                                showDialog = 2
+                                id = contact.id
                             },
                             onDeleteClick = { viewModel.deleteContact(contact) },
                             onCallClick = {
@@ -78,10 +84,18 @@ fun ContactListApp(viewModel: ContactViewModel) {
         }
     }
 
-    if (showDialog) {
+    if (showDialog==1 ) {
         ContactDialog(
-            onDismiss = { showDialog = false },
+            onDismiss = { showDialog = 0 },
             viewModel = viewModel
+        )
+    }
+    if(showDialog==2){
+        ContactDialog(
+            onDismiss = { showDialog = 0 },
+            viewModel = viewModel,
+            text = "Update" ,
+            id = id
         )
     }
 }

@@ -11,11 +11,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun BaseLayout(content: @Composable (PaddingValues) -> Unit) {
+fun BaseLayout( title: String = "",
+                navController: NavHostController,
+                content: @Composable (PaddingValues) -> Unit
+) {
     Scaffold(
         topBar = {
             TopAppBar(
@@ -54,7 +58,10 @@ fun BaseLayout(content: @Composable (PaddingValues) -> Unit) {
         },
         content = { paddingValues ->
             Surface(
-                modifier = Modifier.padding(top=60.dp).fillMaxWidth(),
+                //modifier = Modifier.padding(top=60.dp).fillMaxWidth(),
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(paddingValues), // Ensure padding is applied here to prevent overlap
                 color = MaterialTheme.colorScheme.background
             ) {
                 content(paddingValues)

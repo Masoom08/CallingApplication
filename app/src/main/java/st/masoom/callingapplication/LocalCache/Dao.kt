@@ -3,6 +3,7 @@ package st.masoom.callingapplication.LocalCache
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
+import androidx.room.Update
 import kotlinx.coroutines.flow.Flow
 import st.masoom.callingapplication.Model.ContactItem
 
@@ -16,4 +17,7 @@ interface Dao {
 
     @Query("DELETE  FROM Contact_Table where id=:id")
     suspend fun deleteSelectedTask(id: Int)
+
+    @Update
+    suspend fun updateContact(contactItem: ContactItem)
 }
