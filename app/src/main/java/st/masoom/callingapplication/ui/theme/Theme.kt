@@ -9,18 +9,36 @@ import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 
 private val DarkColorScheme = darkColorScheme(
+    /*
     primary = Purple80,
     secondary = PurpleGrey80,
     tertiary = Pink80
+     */
+    primary = Color(0xFF1B5E20), // Dark Green
+    onPrimary = Color.White,
+    background = Color(0xFF263238), // Dark Blue Gray
+    surface = Color(0xFF37474F), // Medium Blue Gray for surfaces
+    onBackground = Color.White,
+    onSurface = Color.White
 )
 
 private val LightColorScheme = lightColorScheme(
+    /*
     primary = Purple40,
     secondary = PurpleGrey40,
     tertiary = Pink40
+     */
+
+    primary = Color(0xFF808000), // Bright Olive Green
+    onPrimary = Color.White,
+    background = Color(0xFFFDFDFD), // Almost white
+    surface = Color(0xFFFFFFFF), // White for cards
+    onBackground = Color.Black,
+    onSurface = Color.Black
 
     /* Other default colors to override
     background = Color(0xFFFFFBFE),

@@ -8,6 +8,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
@@ -21,14 +22,16 @@ fun BaseLayout(content: @Composable (PaddingValues) -> Unit) {
                 title = {
                     Text(
                         text = "Professional Call",
-                        style = MaterialTheme.typography.titleLarge.copy(fontSize = 20.sp)
+                        style = MaterialTheme.typography.titleLarge.copy(fontSize = 20.sp),
+                        color = Color(0xFFFDFDFD)
                     )
                 },
                 navigationIcon = {
                     IconButton(onClick = { /* Handle back action */ }) {
                         Icon(
                             imageVector = Icons.Default.ArrowBack,
-                            contentDescription = "Back"
+                            contentDescription = "Back",
+                            tint = MaterialTheme.colorScheme.onPrimaryContainer
                         )
                     }
                 },
@@ -36,13 +39,14 @@ fun BaseLayout(content: @Composable (PaddingValues) -> Unit) {
                     IconButton(onClick = { /* Handle call settings */ }) {
                         Icon(
                             imageVector = Icons.Default.Settings,
-                            contentDescription = "Settings"
+                            contentDescription = "Settings",
+                            tint = MaterialTheme.colorScheme.onPrimaryContainer
                         )
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.primaryContainer,
-                    titleContentColor = MaterialTheme.colorScheme.onPrimaryContainer,
+                    containerColor = Color(0xFF808000),
+                    titleContentColor = Color.White,
                     navigationIconContentColor = MaterialTheme.colorScheme.onPrimaryContainer,
                     actionIconContentColor = MaterialTheme.colorScheme.onPrimaryContainer
                 )

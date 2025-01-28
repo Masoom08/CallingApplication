@@ -12,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.graphics.Color
 import st.masoom.callingapplication.ViewModel.ContactViewModel
 
 @Composable
@@ -24,19 +25,21 @@ fun ContactDialog(
 
     AlertDialog(
         onDismissRequest = { onDismiss() },
-        title = {  Text("Add Contact" ) },
+        title = {
+            Text(text = "Add Contact"
+            ) },
         text = {
             Column {
                 OutlinedTextField(
                     value = name,
                     onValueChange = { name = it },
-                    label = { Text("Name") },
+                    label = { Text(text ="Name",color =Color.Black  ) },
                     modifier = Modifier.fillMaxWidth()
                 )
                 OutlinedTextField(
                     value = phoneNumber,
                     onValueChange = { phoneNumber = it },
-                    label = { Text("Phone Number") },
+                    label = { Text("Phone Number", color =Color.Black) },
                     modifier = Modifier.fillMaxWidth()
                 )
             }

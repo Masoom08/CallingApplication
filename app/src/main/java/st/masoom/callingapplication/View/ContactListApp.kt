@@ -44,6 +44,7 @@ fun ContactListApp(viewModel: ContactViewModel) {
                 Text(
                     text = "No contacts found. Add a new one!",
                     style = MaterialTheme.typography.bodyLarge,
+                    color = MaterialTheme.colorScheme.primary,
                     modifier = Modifier.padding(16.dp)
                 )
             } else {
