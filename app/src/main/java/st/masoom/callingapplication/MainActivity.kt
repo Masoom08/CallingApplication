@@ -28,7 +28,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             CallingApplicationTheme {
                 val navController = rememberNavController()
-/*
+
                 BaseLayout(navController = navController){
                     val viewModel = ViewModelProvider(
                         this,
@@ -37,8 +37,7 @@ class MainActivity : ComponentActivity() {
                     ContactListApp(viewModel,navController = navController,)
                 }
 
- */
-
+/*
                 val viewModel = ViewModelProvider(
                     this,
                     ContactViewModelFactory(applicationContext)
@@ -47,7 +46,7 @@ class MainActivity : ComponentActivity() {
                 val contacts = viewModel.contacts.collectAsState(initial = emptyList())
                 NavigationGraph(navController = navController, contacts = contacts.value)
 
-
+ */
             }
         }
     }
