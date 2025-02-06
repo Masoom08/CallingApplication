@@ -29,24 +29,14 @@ class MainActivity : ComponentActivity() {
             CallingApplicationTheme {
                 val navController = rememberNavController()
 
-                BaseLayout(navController = navController){
-                    val viewModel = ViewModelProvider(
-                        this,
-                        ContactViewModelFactory(applicationContext)
-                    ).get(ContactViewModel::class.java)
-                    ContactListApp(viewModel,navController = navController,)
-                }
-
-/*
                 val viewModel = ViewModelProvider(
                     this,
                     ContactViewModelFactory(applicationContext)
                 ).get(ContactViewModel::class.java)
-                //ContactListApp(viewModel,navController = navController,)
-                val contacts = viewModel.contacts.collectAsState(initial = emptyList())
-                NavigationGraph(navController = navController, contacts = contacts.value)
 
- */
+                BaseLayout(navController = navController) {
+                    NavigationGraph(navController, viewModel)
+                }
             }
         }
     }
