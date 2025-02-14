@@ -37,7 +37,7 @@ fun ContactListItem(
         modifier = Modifier
             .fillMaxWidth()
             .padding(8.dp)
-            .clickable { /*onCardClick(contact)*/ },
+            .clickable { onCardClick(contact) },
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
         elevation = CardDefaults.cardElevation(4.dp)
     ) {

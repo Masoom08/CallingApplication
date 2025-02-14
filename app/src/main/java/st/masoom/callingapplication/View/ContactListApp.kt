@@ -19,9 +19,7 @@ import android.content.Context
 import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavHostController
 import st.masoom.callingapplication.ViewModel.ContactViewModel
-import st.masoom.callingapplication.View.ContactListItem
-import st.masoom.callingapplication.View.ContactDialog
-import st.masoom.callingapplication.Model.ContactItem
+import st.masoom.callingapplication.Navigation.Screen
 
 @Composable
 fun ContactListApp(viewModel: ContactViewModel, navController: NavHostController) {
@@ -55,9 +53,7 @@ fun ContactListApp(viewModel: ContactViewModel, navController: NavHostController
                         ContactListItem(
                             contact = contact,
                             onCardClick = {
-                                navController.navigate(
-                                    "contact_details/${contact.name}/${contact.phoneNumber}"
-                                )
+                                navController.navigate(Screen.ContactDetail.createRoute(contact.name, contact.phoneNumber))
                             },
                             onEditClick = {
                                 showDialog = 2
